@@ -195,30 +195,25 @@ namespace Task
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
 
-            switch(select)
+            Console.Clear();//다시 돌아가게 하거나 할때 줄을 생성하지 않고 새로 갱신하기 위해
+            switch (select)
             {
                 case 1: //상태 보기
-                    Console.Clear();//다시 돌아가게 하거나 할때 줄을 생성하지 않고 새로 갱신하기 위해
                     Status();
                     break;
                 case 2: //인벤토리
-                    Console.Clear();
                     Inventory();
                     break;
                 case 3: //상점
-                    Console.Clear();
                     Shop();
                     break;
                 case 4: //던전 입장
-                    Console.Clear();
                     EnterDungeon();
                     break;
                 case 5: //휴식하기
-                    Console.Clear();
                     RestCenter();
                     break;
                 default:
-                    Console.Clear();
                     Console.WriteLine("잘못된 입력입니다.");
                     Title();
                     break;
