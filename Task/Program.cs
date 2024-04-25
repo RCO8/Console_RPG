@@ -252,14 +252,11 @@ namespace Task
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
 
+            Console.Clear();
             if (select == 0)
-            {
-                Console.Clear();
                 Title();
-            }
             else
             {
-                Console.Clear();
                 Console.WriteLine("잘못된 입력입니다.");
                 Status();   //다른 값을 입력하면 현재 창에서 리셋
             }
@@ -286,19 +283,17 @@ namespace Task
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
 
+            Console.Clear();
             if (select == 1)
             {
-                Console.Clear();
                 EquipManage();  //장착 관리
             }
             else if (select == 0)
             {
-                Console.Clear();
                 Title();
             }
             else
             {
-                Console.Clear();
                 Console.WriteLine("잘못된 입력입니다.");
                 Inventory();
             }
@@ -325,22 +320,18 @@ namespace Task
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
 
+            Console.Clear();
             if (0 < select && select <= invents.Count)
             {
                 //해당 아이템 장착
                 --select;
                 invents[select].EquipItem();
-                Console.Clear();
                 EquipManage();
             }
             else if (select == 0)
-            {
-                Console.Clear();
                 Inventory();
-            }
             else
             {
-                Console.Clear();
                 Console.WriteLine("잘못된 입력입니다.");
                 EquipManage();
             }
@@ -370,24 +361,21 @@ namespace Task
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
 
-            switch(select)
+            Console.Clear();
+            switch (select)
             {
                 case 1:
-                    Console.Clear();
                     //아이템 구매
                     BuyItem();
                     break;
                 case 2:
-                    Console.Clear();
                     //아이템 판매
                     SellItem();
                     break;
                 case 0:
-                    Console.Clear();
                     Title();
                     break;
                 default:
-                    Console.Clear();
                     Console.WriteLine("잘못된 입력입니다.");
                     Shop();
                     break;
@@ -417,6 +405,7 @@ namespace Task
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
 
+            Console.Clear();
             if (0 < select && select <= products.Count)
             {
                 //해당 아이템 구매
@@ -425,17 +414,12 @@ namespace Task
                 //인벤토리에 추가
                 invents.Add(new Invent(products[select].GiveItem()));
                 invents[invents.Count-1].SetPrice(products[select].GiveItem().gold);  //가격 추가
-                Console.Clear();
                 BuyItem();
             }
             else if (select == 0)
-            {
-                Console.Clear();
                 Shop();
-            }
             else
             {
-                Console.Clear();
                 Console.WriteLine("잘못된 입력입니다.");
                 BuyItem();
             }
@@ -466,23 +450,19 @@ namespace Task
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
 
-            if(0 < select && select <= invents.Count)
+            Console.Clear();
+            if (0 < select && select <= invents.Count)
             {
                 //아이템 판매
                 ++select;
                 yourGold += invents[select].GetPrice();
                 invents.RemoveAt(select);
-                Console.Clear();
                 SellItem();
             }
             else if(select == 0)
-            {
-                Console.Clear();
                 Shop();
-            }
             else
             {
-                Console.Clear();
                 Console.WriteLine("잘못된 입력입니다.");
                 SellItem();
             }
@@ -502,21 +482,19 @@ namespace Task
             Console.WriteLine("\n원하시는 행동을 입력해주세요.");
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
-            
-            switch(select)
+
+            Console.Clear();
+            switch (select)
             {
                 case 1: //쉬운 던전
                 case 2: //일반 던전
                 case 3: //어려운 던전
-                    Console.Clear();
                     ActionDungeon(select);
                     break;
                 case 0: //돌아가기
-                    Console.Clear();
                     Title();
                     break;
                 default:
-                    Console.Clear();
                     Console.WriteLine("잘못된 입력입니다.");
                     EnterDungeon();
                     break;
@@ -610,7 +588,7 @@ namespace Task
             Console.WriteLine("\n원하시는 행동을 입력해주세요.");
             Console.Write(">>");
             int select = Convert.ToInt32(Console.ReadLine());
-            //
+
             if(select == 1)
             {
                 Console.Clear();
