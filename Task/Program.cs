@@ -154,9 +154,10 @@ namespace Task
         List<Invent> invents = new List<Invent>(); //현재 갖고있는 아이템들
         List<Product> products = new List<Product>();   //현재 상점에 있는 아이템들
 
-        delegate void PrintMessage(out int s);
+        delegate void PrintMessage(out int s);  //반복적인 메세지 출력코드를 간결화 하기 위한 코드
+        int select; //메뉴를 입력받을 선택
 
-        void SelectMessage(out int select)
+        void SelectMessage(out int select)  //번호로 선택을 받는 함수
         {
             Console.WriteLine("\n원하시는 행동을 입력해주세요.");
             Console.Write(">>");
@@ -192,7 +193,6 @@ namespace Task
         void Title()
         {
             //선택하는 함수 출력코드 각 메서드마다 있음
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
@@ -233,7 +233,6 @@ namespace Task
 
         void Status()   //상태 확인
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("상태 보기");
@@ -276,7 +275,6 @@ namespace Task
 
         void Inventory()    //인벤토리
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("인벤토리");
@@ -297,24 +295,23 @@ namespace Task
             selectMessage(out select);
 
             Console.Clear();
-            if (select == 1)
+            switch(select)
             {
-                EquipManage();  //장착 관리
-            }
-            else if (select == 0)
-            {
-                Title();
-            }
-            else
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Inventory();
+                case 1:
+                    EquipManage();  //장착 관리
+                    break;
+                case 0:
+                    Title();
+                    break;
+                default:
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Inventory();
+                    break;
             }
         }
 
         void EquipManage()  //장착 관리
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("인벤토리 - 장착 관리");
@@ -353,7 +350,6 @@ namespace Task
 
         void Shop() //상점
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("상점");
@@ -399,7 +395,6 @@ namespace Task
 
         void BuyItem()  //아이템 구매
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("상점 - 아이템 구매");
@@ -443,7 +438,6 @@ namespace Task
 
         void SellItem() //아이템 판매
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("상점 - 아이템 판매");
@@ -487,7 +481,6 @@ namespace Task
 
         void EnterDungeon() //던전 입장
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("던전입장");
@@ -521,6 +514,8 @@ namespace Task
 
         void ActionDungeon(int diff)
         {
+            PrintMessage selectMessage = SelectMessage;
+
             // 1 : 쉬움
             // 2 : 일반
             // 3 : 어려움
@@ -579,9 +574,7 @@ namespace Task
             }
 
             Console.WriteLine("0. 나가기");
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             while(select != 0)  //입력범위를 벗어나면
             {
@@ -596,7 +589,6 @@ namespace Task
 
         void RestCenter()   //휴식하기
         {
-            int select = 0;
             PrintMessage selectMessage = SelectMessage;
 
             Console.WriteLine("휴식하기");
@@ -608,32 +600,30 @@ namespace Task
 
             selectMessage(out select);
 
-            if (select == 1)
+            switch(select)
             {
-                Console.Clear();
-                if (yourGold >= 500)
-                {
-                    //회복
-                    yourHP = 100;
-                    yourGold -= 500;
-                    Console.WriteLine("휴식을 완료했습니다.");
-                }
-                else 
-                {
-                    Console.WriteLine("Gold가 부족합니다.");
-                }
-                RestCenter();
-            }
-            else if(select == 0)
-            {
-                Console.Clear();
-                Title();
-            }
-            else
-            {
-                Console.Clear();
-                Console.WriteLine("잘못된 입력입니다.");
-                RestCenter();
+                case 1:
+                    Console.Clear();
+                    if (yourGold >= 500)
+                    {
+                        //회복
+                        yourHP = 100;
+                        yourGold -= 500;
+                        Console.WriteLine("휴식을 완료했습니다.");
+                    }
+                    else
+                        Console.WriteLine("Gold가 부족합니다.");
+                    RestCenter();
+                    break;
+                case 0:
+                    Console.Clear();
+                    Title();
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    RestCenter();
+                    break;
             }
         }
     }
