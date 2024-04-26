@@ -154,6 +154,15 @@ namespace Task
         List<Invent> invents = new List<Invent>(); //현재 갖고있는 아이템들
         List<Product> products = new List<Product>();   //현재 상점에 있는 아이템들
 
+        delegate void PrintMessage(out int s);
+
+        void SelectMessage(out int select)
+        {
+            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
+            Console.Write(">>");
+            select = Convert.ToInt32(Console.ReadLine());
+        }
+
         static void Main(string[] args)
         {
             Program pg = new Program();
@@ -182,6 +191,10 @@ namespace Task
 
         void Title()
         {
+            //선택하는 함수 출력코드 각 메서드마다 있음
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.\n");
             
@@ -191,9 +204,7 @@ namespace Task
             Console.WriteLine("4. 던전입장");
             Console.WriteLine("5. 휴식하기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();//다시 돌아가게 하거나 할때 줄을 생성하지 않고 새로 갱신하기 위해
             switch (select)
@@ -222,6 +233,9 @@ namespace Task
 
         void Status()   //상태 확인
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("상태 보기");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
 
@@ -248,9 +262,7 @@ namespace Task
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();
             if (select == 0)
@@ -264,6 +276,9 @@ namespace Task
 
         void Inventory()    //인벤토리
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("인벤토리");
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다. \n");
 
@@ -279,9 +294,7 @@ namespace Task
             Console.WriteLine("1. 장착 관리");
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();
             if (select == 1)
@@ -301,6 +314,9 @@ namespace Task
 
         void EquipManage()  //장착 관리
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("인벤토리 - 장착 관리");
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다. \n");
 
@@ -316,9 +332,7 @@ namespace Task
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();
             if (0 < select && select <= invents.Count)
@@ -339,6 +353,9 @@ namespace Task
 
         void Shop() //상점
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("상점");
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
 
@@ -357,9 +374,7 @@ namespace Task
             Console.WriteLine("2. 아이템 판매");
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();
             switch (select)
@@ -384,6 +399,9 @@ namespace Task
 
         void BuyItem()  //아이템 구매
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("상점 - 아이템 구매");
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
 
@@ -401,9 +419,7 @@ namespace Task
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();
             if (0 < select && select <= products.Count)
@@ -427,6 +443,9 @@ namespace Task
 
         void SellItem() //아이템 판매
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("상점 - 아이템 판매");
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
 
@@ -446,9 +465,7 @@ namespace Task
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();
             if (0 < select && select <= invents.Count)
@@ -470,6 +487,9 @@ namespace Task
 
         void EnterDungeon() //던전 입장
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("던전입장");
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
 
@@ -479,9 +499,7 @@ namespace Task
             Console.WriteLine("3. 어려운 던전 \t | 방어력 17 이상 권장");
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
             Console.Clear();
             switch (select)
@@ -578,6 +596,9 @@ namespace Task
 
         void RestCenter()   //휴식하기
         {
+            int select = 0;
+            PrintMessage selectMessage = SelectMessage;
+
             Console.WriteLine("휴식하기");
             Console.WriteLine($"500 G를 내면 체력을 회복할 수 있습니다. (보유골드 : {yourGold} G)");
 
@@ -585,11 +606,9 @@ namespace Task
             Console.WriteLine("1. 휴식하기");
             Console.WriteLine("0. 나가기");
 
-            Console.WriteLine("\n원하시는 행동을 입력해주세요.");
-            Console.Write(">>");
-            int select = Convert.ToInt32(Console.ReadLine());
+            selectMessage(out select);
 
-            if(select == 1)
+            if (select == 1)
             {
                 Console.Clear();
                 if (yourGold >= 500)
